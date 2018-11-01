@@ -17,4 +17,25 @@
 
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
+
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="counter_type">Counter type</string>
+    <string name="start_counter">Start counter (value)</string>
+    <string name="step">Step</string>
+    <string name="next_button">Next</string>
+
+    <string-array name="step">
+        <item>Step</item>
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>50</item>
+        <item>100</item>
+    </string-array>
+
 </resources>

@@ -1,10 +1,11 @@
 package com.example.diy2210.easycounter;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +26,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button plusBtn;
     private Button minusBtn;
     private int counter = 0;
+    private EditText titleET;
+    private EditText descET;
+    private EditText counterValueET;
+    private EditText stepET;
+    private Button button;
+    private ArrayAdapter<?> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.new_counter_item, null);
+
+                builder.setCancelable(false);
+                builder.setView(dialogView);
+
+                button = dialogView.findViewById(R.id.button);
+                titleET = dialogView.findViewById(R.id.titleET);
+                descET = dialogView.findViewById(R.id.descET);
+                counterValueET = dialogView.findViewById(R.id.counterValueET);
+                stepET = dialogView.findViewById(R.id.stepET);
+                final AlertDialog dialog = builder.create();
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        titleET.getText();
+                        descET.getText();
+                        counterValueET.getText();
+                        stepET.getText();
+                        dialog.cancel();
+                    }
+                });
+
+                dialog.show();
             }
         });
 
