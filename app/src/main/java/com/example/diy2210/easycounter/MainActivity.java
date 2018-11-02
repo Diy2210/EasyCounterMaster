@@ -15,9 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +32,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private EditText counterValueET;
     private EditText stepET;
     private Button button;
-    private ArrayAdapter<?> adapter;
+    private RadioGroup radioGroup;
+    private RadioButton plusMinusRadioBtn;
+    private RadioButton plusRadioBtn;
+    private RadioButton minusRadioBtn;
+    private String counterType = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,39 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.new_counter_item, null);
-
-                builder.setCancelable(false);
-                builder.setView(dialogView);
-
-                button = dialogView.findViewById(R.id.button);
-                titleET = dialogView.findViewById(R.id.titleET);
-                descET = dialogView.findViewById(R.id.descET);
-                counterValueET = dialogView.findViewById(R.id.counterValueET);
-                stepET = dialogView.findViewById(R.id.stepET);
-                final AlertDialog dialog = builder.create();
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        titleET.getText();
-                        descET.getText();
-                        counterValueET.getText();
-                        stepET.getText();
-                        dialog.cancel();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -85,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         valueTV = findViewById(R.id.valueTV);
         valueTV.setText(String.valueOf(counter));
 
-        plusBtn = findViewById(R.id.plusBtn);
+        plusBtn = findViewById(R.id.plusRadioBtn);
         plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        minusBtn = findViewById(R.id.minusBtn);
+        minusBtn = findViewById(R.id.minusRadioBtn);
         minusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +131,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.nav_create_counter) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.new_counter_item, null);
+
+            builder.setCancelable(true);
+            builder.setView(dialogView);
+
+            button = dialogView.findViewById(R.id.button);
+            titleET = dialogView.findViewById(R.id.titleET);
+            descET = dialogView.findViewById(R.id.descET);
+            counterValueET = dialogView.findViewById(R.id.counterValueET);
+            stepET = dialogView.findViewById(R.id.stepET);
+            radioGroup = dialogView.findViewById(R.id.radioGfroup);
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    switch (checkedId) {
+                        case R.id.plusMinusRadioBtn:
+                            counterType = "1";
+                            break;
+                        case R.id.plusRadioBtn:
+                            counterType = "2";
+                            break;
+                        case R.id.minusRadioBtn:
+                            counterType = "3";
+                            break;
+                    }
+                }
+            });
+
+            final AlertDialog dialog = builder.create();
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    titleET.getText();
+                    descET.getText();
+                    counterValueET.getText();
+                    stepET.getText();
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+
         } else if (id == R.id.nav_my_counter) {
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
