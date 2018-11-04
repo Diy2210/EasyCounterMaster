@@ -166,10 +166,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    titleET.getText();
-                    descET.getText();
-                    counterValueET.getText();
-                    stepET.getText();
+                    ECApp.title = titleET.getText().toString();
+                    ECApp.description = descET.getText().toString();
+                    ECApp.value = counterValueET.getText().toString();
+                    ECApp.step = stepET.getText().toString();
+                    ECApp.counterType = counterType;
+                    startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
                     dialog.cancel();
                 }
             });
