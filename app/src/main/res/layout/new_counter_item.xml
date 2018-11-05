@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,68 +9,141 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
-        <EditText
-            android:id="@+id/titleET"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/title"
-            android:inputType="textPersonName"
-            android:textSize="14sp"
+            android:text="@string/title_new_counter"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/descET"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/titleLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/description"
-            android:inputType="textPersonName"
-            android:textSize="14sp"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:counterOverflowTextAppearance="@style/ThemeOverflowText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleET" />
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-        <EditText
-            android:id="@+id/counterValueET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/start_counter"
-            android:inputType="number"
-            android:text="0"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descET" />
+            <EditText
+                android:id="@+id/titleET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/title"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:selectAllOnFocus="false"
+                android:textSize="14sp" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/stepET"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/descriptionLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/step"
-            android:inputType="number"
-            android:textSize="14sp"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:counterOverflowTextAppearance="@style/ThemeOverflowText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/counterValueET" />
+            app:layout_constraintTop_toBottomOf="@+id/titleLayout">
+
+            <EditText
+                android:id="@+id/descET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/description"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:selectAllOnFocus="false"
+                android:textSize="14sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/counterLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:counterOverflowTextAppearance="@style/ThemeOverflowText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionLayout">
+
+            <EditText
+                android:id="@+id/counterValueET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/start_counter"
+                android:inputType="number"
+                android:padding="10dp"
+                android:text="0"
+                android:textSize="14sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/stepCounterLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:counterOverflowTextAppearance="@style/ThemeOverflowText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/counterLayout">
+
+            <EditText
+                android:id="@+id/stepET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/step"
+                android:padding="10dp"
+                android:inputType="number"
+                android:textSize="14sp" />
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -84,12 +155,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stepET">
+            app:layout_constraintTop_toBottomOf="@+id/stepCounterLayout">
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:paddingLeft="5dp"
@@ -124,14 +196,13 @@
                     android:id="@+id/plusRadioBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="only +" />
+                    android:text="@string/only_plus" />
 
                 <RadioButton
                     android:id="@+id/minusRadioBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="only -" />
-
+                    android:text="@string/only_minus" />
             </RadioGroup>
 
         </android.support.constraint.ConstraintLayout>
@@ -140,11 +211,9 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
             android:background="#00000000"
             android:text="@string/next_button"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
     </android.support.constraint.ConstraintLayout>

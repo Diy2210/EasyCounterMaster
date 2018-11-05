@@ -7,25 +7,33 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Alert Dialog Strings -->
     <string name="ok_button">Ok</string>
     <string name="cancel_button">Cancel</string>
     <string name="message_reset_value">You want to reset the value?</string>
 
+    <!-- Drawer Strings -->
     <string name="create_counter">Create counter</string>
     <string name="my_counter">My counter</string>
     <string name="settings">Settings</string>
 
+    <!-- Settings Strings -->
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
     <string name="delete">Delete</string>
 
+    <!-- Dialog New Counter Strings -->
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="counter_type">Counter type</string>
     <string name="start_counter">Start counter (value)</string>
     <string name="step">Step</string>
     <string name="next_button">Next</string>
+    <string name="only_plus">Only +</string>
+    <string name="only_minus">Only -</string>
+    <string name="title_new_counter">Create new counter</string>
 
+    <!-- Arrays Strings -->
     <string-array name="step">
         <item>Step</item>
         <item>1</item>

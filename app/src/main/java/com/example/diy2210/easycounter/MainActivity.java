@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -144,6 +145,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -193,6 +196,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ECApp.valueInt = Integer.parseInt(counterValueET.getText().toString());
                     ECApp.step = stepET.getText().toString();
                     ECApp.counterType = counterType;
+
+                    // Test empty fields
+                    String s = titleET.getText().toString();
+                    if (TextUtils.isEmpty(s)) {
+                        counterValueET.setError("Empty title");
+                        counterValueET.requestFocus();
+                    }
+
                     startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     dialog.cancel();
