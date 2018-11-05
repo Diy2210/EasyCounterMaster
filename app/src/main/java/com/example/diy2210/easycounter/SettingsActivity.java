@@ -9,6 +9,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     CheckBox soundCheckBox;
     CheckBox vibrationCheckBox;
+    CheckBox deleteCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,18 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ECApp.vibration = isChecked;
+            }
+        });
+
+        deleteCheckBox = findViewById(R.id.deleteCheckBox);
+        if (ECApp.delete) {
+            deleteCheckBox.setChecked(true);
+        }
+
+        deleteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ECApp.delete = isChecked;
             }
         });
     }

@@ -17,6 +17,7 @@
 
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
+    <string name="delete">Delete</string>
 
     <string name="title">Title</string>
     <string name="description">Description</string>

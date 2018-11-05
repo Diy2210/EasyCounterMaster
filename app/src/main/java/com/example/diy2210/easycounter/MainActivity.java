@@ -1,10 +1,12 @@
 package com.example.diy2210.easycounter;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RadioButton plusRadioBtn;
     private RadioButton minusRadioBtn;
     private String counterType = "1";
+    private Vibrator vibrator;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         valueTV = findViewById(R.id.valueTV);
         valueTV.setText(String.valueOf(counter));
 
@@ -61,6 +67,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (ECApp.vibration) {
+                    vibrator.vibrate(100);
+                }
+                if (ECApp.sound) {
+                    mp = MediaPlayer.create(MainActivity.this, R.raw.plus);
+                    mp.start();
+                }
                 counter++;
                 valueTV.setText(String.valueOf(counter));
             }
@@ -70,33 +83,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         minusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (ECApp.vibration) {
+                    vibrator.vibrate(100);
+                }
+                if (ECApp.sound) {
+                    mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
+                    mp.start();
+                }
                 counter--;
                 valueTV.setText(String.valueOf(counter));
             }
         });
 
-        minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setCancelable(false);
-                builder.setMessage(R.string.message_reset_value);
-                builder.setPositiveButton(R.string.ok_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                recreate();
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel_button,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        dialog.dismiss();
-                                    }
+        if (ECApp.delete) {
+            minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setCancelable(false);
+                    builder.setMessage(R.string.message_reset_value);
+                    builder.setPositiveButton(R.string.ok_button,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    recreate();
                                 }
-                        ).show();
-                return false;
-            }
-        });
+                            })
+                            .setNegativeButton(R.string.cancel_button,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.dismiss();
+                                        }
+                                    }
+                            ).show();
+                    return false;
+                }
+            });
+        }
     }
 
 
@@ -172,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ECApp.step = stepET.getText().toString();
                     ECApp.counterType = counterType;
                     startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     dialog.cancel();
                 }
             });
