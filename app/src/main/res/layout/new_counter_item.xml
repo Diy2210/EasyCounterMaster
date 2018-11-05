@@ -53,6 +53,7 @@
             android:ems="10"
             android:hint="@string/start_counter"
             android:inputType="number"
+            android:text="0"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

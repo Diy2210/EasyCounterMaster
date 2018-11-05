@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String counterType = "1";
     private Vibrator vibrator;
     private MediaPlayer mp;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,14 +184,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
 
-            final AlertDialog dialog = builder.create();
-
+            dialog = builder.create();
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ECApp.title = titleET.getText().toString();
                     ECApp.description = descET.getText().toString();
-                    ECApp.value = counterValueET.getText().toString();
+                    ECApp.valueInt = Integer.parseInt(counterValueET.getText().toString());
                     ECApp.step = stepET.getText().toString();
                     ECApp.counterType = counterType;
                     startActivity(new Intent(MainActivity.this, NewCounterActivity.class));

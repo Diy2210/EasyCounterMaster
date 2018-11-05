@@ -9,7 +9,7 @@ public class ECApp extends Application {
     public static Boolean delete = false;
     public static String title = "";
     public static String description = "";
-    public static String value = "";
+    public static Integer valueInt = 0;
     public static String step = "";
     public static String counterType = "";
 
