@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RadioButton plusMinusRadioBtn;
     private RadioButton plusRadioBtn;
     private RadioButton minusRadioBtn;
-    private String counterType = "1";
+    private int counterType = 1;
     private Vibrator vibrator;
     private MediaPlayer mp;
     private AlertDialog dialog;
@@ -175,13 +175,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     switch (checkedId) {
                         case R.id.plusMinusRadioBtn:
-                            counterType = "1";
+                            counterType = 1;
                             break;
                         case R.id.plusRadioBtn:
-                            counterType = "2";
+                            counterType = 2;
                             break;
                         case R.id.minusRadioBtn:
-                            counterType = "3";
+                            counterType = 3;
                             break;
                     }
                 }

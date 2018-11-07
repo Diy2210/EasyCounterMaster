@@ -11,6 +11,6 @@ public class ECApp extends Application {
     public static String description = "";
     public static Integer valueInt = 0;
     public static String step = "";
-    public static String counterType = "";
+    public static Integer counterType = 1;
 
 }
