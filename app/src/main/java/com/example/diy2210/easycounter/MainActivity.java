@@ -24,7 +24,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private TextView valueTV;
     private Button plusBtn;
@@ -66,34 +66,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         valueTV.setText(String.valueOf(counter));
 
         plusBtn = findViewById(R.id.plusRadioBtn);
+        minusBtn = findViewById(R.id.minusRadioBtn);
         plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ECApp.vibration) {
-                    vibrator.vibrate(100);
-                }
-                if (ECApp.sound) {
-                    mp = MediaPlayer.create(MainActivity.this, R.raw.plus);
-                    mp.start();
-                }
-                counter++;
-                valueTV.setText(String.valueOf(counter));
+                counterPlus();
             }
         });
 
-        minusBtn = findViewById(R.id.minusRadioBtn);
         minusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ECApp.vibration) {
-                    vibrator.vibrate(100);
-                }
-                if (ECApp.sound) {
-                    mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
-                    mp.start();
-                }
-                counter--;
-                valueTV.setText(String.valueOf(counter));
+                counterMinus();
             }
         });
 
@@ -123,102 +107,126 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    private void counterPlus() {
+        counter++;
+        valueTV.setText(String.valueOf(counter));
+        if (ECApp.vibration) {
+            vibrator.vibrate(100);
+        }
+        if (ECApp.sound) {
+            mp = MediaPlayer.create(MainActivity.this, R.raw.plus);
+            mp.start();
+        }
+    }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+    private void counterMinus() {
+        counter--;
+        valueTV.setText(String.valueOf(counter));
+        if (ECApp.vibration) {
+            vibrator.vibrate(100);
+        }
+        if (ECApp.sound) {
+            mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
+            mp.start();
         }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+        public void onBackPressed () {
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
+        }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.main, menu);
             return true;
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.nav_create_counter) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.new_counter_item, null);
-
-            builder.setCancelable(true);
-            builder.setView(dialogView);
-
-            button = dialogView.findViewById(R.id.button);
-            titleET = dialogView.findViewById(R.id.titleET);
-            descET = dialogView.findViewById(R.id.descET);
-            counterValueET = dialogView.findViewById(R.id.counterValueET);
-            stepET = dialogView.findViewById(R.id.stepET);
-            radioGroup = dialogView.findViewById(R.id.radioGfroup);
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch (checkedId) {
-                        case R.id.plusMinusRadioBtn:
-                            counterType = 1;
-                            break;
-                        case R.id.plusRadioBtn:
-                            counterType = 2;
-                            break;
-                        case R.id.minusRadioBtn:
-                            counterType = 3;
-                            break;
-                    }
-                }
-            });
-
-            dialog = builder.create();
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ECApp.title = titleET.getText().toString();
-                    ECApp.description = descET.getText().toString();
-                    ECApp.valueInt = Integer.parseInt(counterValueET.getText().toString());
-                    ECApp.step = stepET.getText().toString();
-                    ECApp.counterType = counterType;
-
-                    // Test empty fields
-                    String s = titleET.getText().toString();
-                    if (TextUtils.isEmpty(s)) {
-                        counterValueET.setError("Empty title");
-                        counterValueET.requestFocus();
-                    }
-
-                    startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    dialog.cancel();
-                }
-            });
-            dialog.show();
-
-        } else if (id == R.id.nav_my_counter) {
-        } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            int id = item.getItemId();
+            if (id == R.id.action_settings) {
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+        @SuppressWarnings("StatementWithEmptyBody")
+        @Override
+        public boolean onNavigationItemSelected (MenuItem item){
+            int id = item.getItemId();
+            if (id == R.id.nav_create_counter) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.new_counter_item, null);
+
+                builder.setCancelable(true);
+                builder.setView(dialogView);
+
+                button = dialogView.findViewById(R.id.button);
+                titleET = dialogView.findViewById(R.id.titleET);
+                descET = dialogView.findViewById(R.id.descET);
+                counterValueET = dialogView.findViewById(R.id.counterValueET);
+                stepET = dialogView.findViewById(R.id.stepET);
+                radioGroup = dialogView.findViewById(R.id.radioGfroup);
+                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        switch (checkedId) {
+                            case R.id.plusMinusRadioBtn:
+                                counterType = 1;
+                                break;
+                            case R.id.plusRadioBtn:
+                                counterType = 2;
+                                break;
+                            case R.id.minusRadioBtn:
+                                counterType = 3;
+                                break;
+                        }
+                    }
+                });
+
+                dialog = builder.create();
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ECApp.title = titleET.getText().toString();
+                        ECApp.description = descET.getText().toString();
+                        ECApp.valueInt = Integer.parseInt(counterValueET.getText().toString());
+                        ECApp.step = stepET.getText().toString();
+                        ECApp.counterType = counterType;
+
+                        // Test empty fields
+                        String s = titleET.getText().toString();
+                        if (TextUtils.isEmpty(s)) {
+                            counterValueET.setError("Empty title");
+                            counterValueET.requestFocus();
+                        }
+
+                        startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+
+            } else if (id == R.id.nav_my_counter) {
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            }
+
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
 }
+

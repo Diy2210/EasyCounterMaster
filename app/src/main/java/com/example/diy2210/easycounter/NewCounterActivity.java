@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class NewCounterActivity extends AppCompatActivity {
+public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
     private TextView titleTV;
     private TextView descTV;
@@ -75,88 +75,70 @@ public class NewCounterActivity extends AppCompatActivity {
         onlyPlusBtn = findViewById(R.id.onlyPlusBtn);
         onlyMinusBtn = findViewById(R.id.onlyMinusBtn);
 
-        // Plus Button
-        plusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter++;
-                valueTV.setText(String.valueOf(counter));
-                if (ECApp.vibration) {
-                    vibrator.vibrate(100);
-                }
-                if (ECApp.sound) {
-                    mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
-                    mp.start();
-                }
-            }
-        });
-
-        // Only Plus Button
-        onlyPlusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter++;
-                valueTV.setText(String.valueOf(counter));
-                if (ECApp.vibration) {
-                    vibrator.vibrate(100);
-                }
-                if (ECApp.sound) {
-                    mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
-                    mp.start();
-                }
-            }
-        });
-
-        // Minus Button
-        minusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter--;
-                valueTV.setText(String.valueOf(counter));
-                if (ECApp.vibration) {
-                    vibrator.vibrate(100);
-                }
-                if (ECApp.sound) {
-                    mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
-                    mp.start();
-                }
-            }
-        });
-
-        // Only Minus Button
-        onlyMinusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter--;
-                valueTV.setText(String.valueOf(counter));
-                if (ECApp.vibration) {
-                    vibrator.vibrate(100);
-                }
-                if (ECApp.sound) {
-                    mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
-                    mp.start();
-                }
-            }
-        });
+        plusBtn.setOnClickListener(this);
+        minusBtn.setOnClickListener(this);
+        onlyPlusBtn.setOnClickListener(this);
+        onlyMinusBtn.setOnClickListener(this);
 
         if (ECApp.delete) {
-            // Minus Button Long LIstener
-            minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    AlertRecreate();
-                    return false;
-                }
-            });
+            minusBtn.setOnLongClickListener(this);
+//            onlyMinusBtn.setOnLongClickListener(this);
+        }
+    }
 
-            // Only Minus Button Long LIstener
-            onlyMinusBtn.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.plusBtn:
+                counterPlus();
+                break;
+            case R.id.minusBtn:
+                counterMinus();
+                break;
+            case R.id.onlyPlusBtn:
+                counterPlus();
+                break;
+            case R.id.onlyMinusBtn:
+                counterMinus();
+                break;
+        }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+            switch (v.getId()) {
+                case R.id.minusBtn:
                     AlertRecreate();
-                    return false;
-                }
-            });
+                    break;
+//                case R.id.onlyMinusBtn:
+//                    AlertRecreate();
+//                    break;
+            }
+
+        return false;
+    }
+
+    private void counterPlus() {
+        counter++;
+        valueTV.setText(String.valueOf(counter));
+        if (ECApp.vibration) {
+            vibrator.vibrate(100);
+        }
+        if (ECApp.sound) {
+            mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
+            mp.start();
+        }
+    }
+
+    private void counterMinus() {
+        counter--;
+        valueTV.setText(String.valueOf(counter));
+        if (ECApp.vibration) {
+            vibrator.vibrate(100);
+        }
+        if (ECApp.sound) {
+            mp = MediaPlayer.create(NewCounterActivity.this, R.raw.minus);
+            mp.start();
         }
     }
 
