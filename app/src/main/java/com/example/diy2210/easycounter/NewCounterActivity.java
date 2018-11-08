@@ -12,11 +12,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
     private TextView titleTV;
     private TextView descTV;
     private TextView valueTV;
+    private TextView timeTV;
     private Button plusBtn;
     private Button minusBtn;
     private Button onlyPlusBtn;
@@ -27,6 +32,7 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     private ConstraintLayout plusMinusConstraintLayout;
     private ConstraintLayout plusConstraintLayout;
     private ConstraintLayout minusConstraintLayout;
+    private DateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +42,20 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         counter = ECApp.valueInt;
 
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        if (ECApp.time) {
+            Date date = new Date();
+            timeTV = findViewById(R.id.timeTV);
+            timeTV.setText(dateFormat.format(date));
+        }
+
         titleTV = findViewById(R.id.titleTV);
         if (ECApp.title.isEmpty()) {
             titleTV.setVisibility(View.GONE);
         } else {
             titleTV.setText(ECApp.title);
         }
+
         descTV = findViewById(R.id.descTV);
         if (ECApp.description.isEmpty()) {
             descTV.setVisibility(View.GONE);
@@ -128,6 +142,10 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
             mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
             mp.start();
         }
+        if (ECApp.time) {
+            Date date = new Date();
+            timeTV.setText(dateFormat.format(date));
+        }
     }
 
     private void counterMinus() {
@@ -139,6 +157,10 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         if (ECApp.sound) {
             mp = MediaPlayer.create(NewCounterActivity.this, R.raw.minus);
             mp.start();
+        }
+        if (ECApp.time) {
+            Date date = new Date();
+            timeTV.setText(dateFormat.format(date));
         }
     }
 

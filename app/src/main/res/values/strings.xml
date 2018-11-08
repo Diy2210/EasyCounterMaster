@@ -21,6 +21,7 @@
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
     <string name="delete">Delete</string>
+    <string name="time">Time</string>
 
     <!-- Dialog New Counter Strings -->
     <string name="title">Title</string>
@@ -32,6 +33,7 @@
     <string name="only_plus">Only +</string>
     <string name="only_minus">Only -</string>
     <string name="title_new_counter">Create new counter</string>
+    <string name="last_time_change">Last time change:</string>
 
     <!-- Arrays Strings -->
     <string-array name="step">

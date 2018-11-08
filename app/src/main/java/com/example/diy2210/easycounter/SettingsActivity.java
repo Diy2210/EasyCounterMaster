@@ -2,14 +2,16 @@ package com.example.diy2210.easycounter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    CheckBox soundCheckBox;
-    CheckBox vibrationCheckBox;
-    CheckBox deleteCheckBox;
+    private CheckBox soundCheckBox;
+    private CheckBox vibrationCheckBox;
+    private CheckBox deleteCheckBox;
+    private CheckBox timeCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,18 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ECApp.delete = isChecked;
+            }
+        });
+
+        timeCheckBox = findViewById(R.id.timeCheckBox);
+        if (ECApp.time) {
+            timeCheckBox.setChecked(true);
+        }
+
+        timeCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ECApp.time = isChecked;
             }
         });
     }

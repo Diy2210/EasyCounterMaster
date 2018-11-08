@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.constraint.ConstraintLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private TextView valueTV;
+    private TextView timeTV;
     private Button plusBtn;
     private Button minusBtn;
     private int counter = 0;
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Vibrator vibrator;
     private MediaPlayer mp;
     private AlertDialog dialog;
+    private DateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +69,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
         valueTV = findViewById(R.id.valueTV);
+        timeTV = findViewById(R.id.timeTV);
+
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        if (ECApp.time) {
+            Date date = new Date();
+            timeTV.setText(dateFormat.format(date));
+        }
+
         valueTV.setText(String.valueOf(counter));
 
         plusBtn = findViewById(R.id.plusRadioBtn);
@@ -117,6 +132,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mp = MediaPlayer.create(MainActivity.this, R.raw.plus);
             mp.start();
         }
+        if (ECApp.time) {
+            Date date = new Date();
+            timeTV.setText(dateFormat.format(date));
+        }
     }
 
     private void counterMinus() {
@@ -128,6 +147,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (ECApp.sound) {
             mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
             mp.start();
+        }
+        if (ECApp.time) {
+            Date date = new Date();
+            timeTV.setText(dateFormat.format(date));
         }
     }
 
@@ -143,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         public boolean onCreateOptionsMenu (Menu menu){
-            // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.main, menu);
             return true;
         }
