@@ -14,7 +14,7 @@
 
     <!-- Drawer Strings -->
     <string name="create_counter">Create counter</string>
-    <string name="my_counter">My counter</string>
+    <string name="my_counters">My counters</string>
     <string name="settings">Settings</string>
 
     <!-- Settings Strings -->
