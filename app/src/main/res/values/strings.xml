@@ -2,8 +2,6 @@
     <string name="app_name">EasyCounter</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -14,7 +12,9 @@
 
     <!-- Drawer Strings -->
     <string name="create_counter">Create counter</string>
+    <string name="create_multipul_counter">Create multipul counter</string>
     <string name="my_counters">My counters</string>
+    <string name="multipul_counters">Multipul counters</string>
     <string name="settings">Settings</string>
 
     <!-- Settings Strings -->
@@ -22,6 +22,7 @@
     <string name="vibration">Vibration</string>
     <string name="delete">Delete</string>
     <string name="time">Time</string>
+    <string name="screen">Screen</string>
 
     <!-- Dialog New Counter Strings -->
     <string name="title">Title</string>
