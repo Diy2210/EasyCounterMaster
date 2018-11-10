@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -126,6 +127,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (ECApp.hardwareButtons) {
+            if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+                counterMinus();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (ECApp.hardwareButtons) {
+            if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+                counterPlus();
+            }
+        }
+        return true;
     }
 
     private void counterPlus() {

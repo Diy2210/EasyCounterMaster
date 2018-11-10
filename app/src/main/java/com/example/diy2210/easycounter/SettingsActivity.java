@@ -12,6 +12,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox deleteCheckBox;
     private CheckBox timeCheckBox;
     private CheckBox screenCheckBox;
+    private CheckBox volumeButtonsCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,18 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ECApp.screenOn = isChecked;
+            }
+        });
+
+        volumeButtonsCheckBox = findViewById(R.id.volumeButtonsCheckBox);
+        if (ECApp.time) {
+            volumeButtonsCheckBox.setChecked(true);
+        }
+
+        volumeButtonsCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ECApp.hardwareButtons = isChecked;
             }
         });
     }

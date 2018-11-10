@@ -23,6 +23,7 @@
     <string name="delete">Delete</string>
     <string name="time">Time</string>
     <string name="screen">Screen</string>
+    <string name="hardware_buttons">Hardware buttons</string>
 
     <!-- Dialog New Counter Strings -->
     <string name="title">Title</string>
