@@ -13,7 +13,7 @@ public class ECApp extends Application {
     public static String title = "";
     public static String description = "";
     public static Integer valueInt = 0;
-    public static String step = "";
+    public static Integer step = 1;
     public static Integer counterType = 1;
     public static Integer multipleCounter = 1;
 

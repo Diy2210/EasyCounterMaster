@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ECApp.title = titleET.getText().toString();
                     ECApp.description = descET.getText().toString();
                     ECApp.valueInt = Integer.parseInt(counterValueET.getText().toString());
-                    ECApp.step = stepET.getText().toString();
+                    ECApp.step = Integer.parseInt(stepET.getText().toString());
                     ECApp.counterType = counterType;
 
                     // Test empty fields

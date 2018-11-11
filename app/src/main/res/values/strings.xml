@@ -11,7 +11,7 @@
     <string name="message_reset_value">You want to reset the value?</string>
 
     <!-- Drawer Strings -->
-    <string name="create_counter">Create counter</string>
+    <string name="create_counter">Create new counter</string>
     <string name="create_multipul_counter">Create multipul counter</string>
     <string name="my_counters">My counters</string>
     <string name="multipul_counters">Multipul counters</string>
