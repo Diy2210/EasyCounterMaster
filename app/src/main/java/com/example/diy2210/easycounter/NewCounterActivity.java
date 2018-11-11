@@ -95,7 +95,7 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         onlyPlusBtn.setOnClickListener(this);
         onlyMinusBtn.setOnClickListener(this);
 
-        if (ECApp.delete) {
+        if (ECApp.reset) {
             minusBtn.setOnLongClickListener(this);
 //            onlyMinusBtn.setOnLongClickListener(this);
         }

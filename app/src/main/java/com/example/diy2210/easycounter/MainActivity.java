@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        if (ECApp.delete) {
+        if (ECApp.reset) {
             minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

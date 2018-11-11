@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/sound"
-            android:textColor="#21b409"
+            android:textColor="#1b3ed8"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +40,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/sound"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,10 +51,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="@string/sound"
+            android:layout_marginBottom="8dp"
+            android:text="@string/sound_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -63,9 +63,9 @@
             android:id="@+id/soundCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:checked="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/vibration"
-            android:textColor="#21b409"
+            android:textColor="#1b3ed8"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +120,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/vibration"
+            android:text="@string/vibration_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView1" />
@@ -139,7 +139,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayoutDelete"
+        android:id="@+id/constraintLayoutReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -152,8 +152,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/delete"
-            android:textColor="#21b409"
+            android:text="@string/reset"
+            android:textColor="#1b3ed8"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -161,21 +161,21 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayoutDeletePosition"
+        android:id="@+id/constraintLayoutResetPosition"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDelete">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutReset">
 
         <TextView
-            android:id="@+id/textViewDelete"
+            android:id="@+id/textViewReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/delete"
+            android:text="@string/reset"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -187,13 +187,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/delete"
+            android:text="@string/reset_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDelete" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewReset" />
 
         <CheckBox
-            android:id="@+id/deleteCheckBox"
+            android:id="@+id/resetCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -213,14 +213,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutDeletePosition">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutResetPosition">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/time"
-            android:textColor="#21b409"
+            android:textColor="#1b3ed8"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -253,7 +253,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/time"
+            android:text="@string/time_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
@@ -286,7 +286,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/screen"
-            android:textColor="#21b409"
+            android:textColor="#1b3ed8"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -319,7 +319,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/screen"
+            android:text="@string/screen_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewScreen" />
@@ -352,7 +352,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/hardware_buttons"
-            android:textColor="#21b409"
+            android:textColor="#1b3ed8"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -386,7 +386,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/hardware_buttons"
+            android:text="@string/hardware_buttons_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewVolumeButtons" />
@@ -403,7 +403,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
-
-
-
 </android.support.constraint.ConstraintLayout>

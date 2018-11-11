@@ -6,7 +6,7 @@ public class ECApp extends Application {
 
     public static Boolean sound = false;
     public static Boolean vibration = false;
-    public static Boolean delete = false;
+    public static Boolean reset = false;
     public static Boolean time = false;
     public static Boolean screenOn = false;
     public static Boolean hardwareButtons = false;

@@ -1,5 +1,7 @@
 package com.example.diy2210.easycounter;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CheckBox;
@@ -7,9 +9,13 @@ import android.widget.CompoundButton;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    public static final String APP_PREFERENCES = "settings";
+    public static final Boolean APP_PREFERENCES_COUNTER = false;
+    private SharedPreferences sharedPref;
+
     private CheckBox soundCheckBox;
     private CheckBox vibrationCheckBox;
-    private CheckBox deleteCheckBox;
+    private CheckBox resetCheckBox;
     private CheckBox timeCheckBox;
     private CheckBox screenCheckBox;
     private CheckBox volumeButtonsCheckBox;
@@ -18,6 +24,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         soundCheckBox = findViewById(R.id.soundCheckBox);
         if (ECApp.sound) {
@@ -43,15 +51,15 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        deleteCheckBox = findViewById(R.id.deleteCheckBox);
-        if (ECApp.delete) {
-            deleteCheckBox.setChecked(true);
+        resetCheckBox = findViewById(R.id.resetCheckBox);
+        if (ECApp.reset) {
+            resetCheckBox.setChecked(true);
         }
 
-        deleteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        resetCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ECApp.delete = isChecked;
+                ECApp.reset = isChecked;
             }
         });
 
@@ -68,7 +76,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         screenCheckBox = findViewById(R.id.screenCheckBox);
-        if (ECApp.time) {
+        if (ECApp.screenOn) {
             screenCheckBox.setChecked(true);
         }
 
@@ -80,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         volumeButtonsCheckBox = findViewById(R.id.volumeButtonsCheckBox);
-        if (ECApp.time) {
+        if (ECApp.hardwareButtons) {
             volumeButtonsCheckBox.setChecked(true);
         }
 
@@ -91,4 +99,30 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), soundCheckBox.isChecked());
+//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), vibrationCheckBox.isChecked());
+//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), resetCheckBox.isChecked());
+//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), timeCheckBox.isChecked());
+//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), screenCheckBox.isChecked());
+//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), volumeButtonsCheckBox.isChecked());
+//        editor.apply();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (sharedPref.contains(String.valueOf(APP_PREFERENCES_COUNTER))) {
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), soundCheckBox.isChecked());
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), vibrationCheckBox.isChecked());
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), resetCheckBox.isChecked());
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), timeCheckBox.isChecked());
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), screenCheckBox.isChecked());
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), volumeButtonsCheckBox.isChecked());
+//        }
+//    }
 }

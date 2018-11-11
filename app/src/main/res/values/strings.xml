@@ -19,11 +19,18 @@
 
     <!-- Settings Strings -->
     <string name="sound">Sound</string>
+    <string name="sound_info">Зlay sound when you press buttons</string>
     <string name="vibration">Vibration</string>
+    <string name="vibration_info">Use vibration when pressing buttons</string>
     <string name="delete">Delete</string>
+    <string name="reset">Reset</string>
+    <string name="reset_info">Reset counter value</string>
     <string name="time">Time</string>
+    <string name="time_info">Show the last count change time</string>
     <string name="screen">Screen</string>
+    <string name="screen_info">Do not turn off the screen during counting</string>
     <string name="hardware_buttons">Hardware buttons</string>
+    <string name="hardware_buttons_info">Use hardware volume buttons for counting</string>
 
     <!-- Dialog New Counter Strings -->
     <string name="title">Title</string>
