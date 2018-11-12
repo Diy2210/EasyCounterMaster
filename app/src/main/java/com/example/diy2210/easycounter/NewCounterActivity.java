@@ -19,6 +19,7 @@ import java.util.Date;
 
 public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
+    private int counter;
     private TextView titleTV;
     private TextView descTV;
     private TextView valueTV;
@@ -29,7 +30,6 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     private Button onlyMinusBtn;
     private Vibrator vibrator;
     private MediaPlayer mp;
-    private int counter;
     private ConstraintLayout plusMinusConstraintLayout;
     private ConstraintLayout plusConstraintLayout;
     private ConstraintLayout minusConstraintLayout;

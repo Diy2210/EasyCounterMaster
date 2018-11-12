@@ -32,16 +32,18 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private int counter = 0;
+    private int counterType = 1;
+    private int multipleCounter = 1;
     private TextView valueTV;
     private TextView timeTV;
     private Button plusBtn;
     private Button minusBtn;
-    private int counter = 0;
+    private Button button;
     private EditText titleET;
     private EditText descET;
     private EditText counterValueET;
     private EditText stepET;
-    private Button button;
     private RadioGroup radioGroup;
     private RadioGroup radioGroupMultiple;
     private RadioButton plusMinusRadioBtn;
@@ -49,8 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RadioButton minusRadioBtn;
     private RadioButton twoRadioBtn;
     private RadioButton fourRadioBtn;
-    private int counterType = 1;
-    private int multipleCounter = 1;
     private Vibrator vibrator;
     private MediaPlayer mp;
     private AlertDialog dialog;

@@ -7,7 +7,7 @@ import android.widget.ListView;
 public class MyCountersListActivity extends AppCompatActivity {
 
     private ListView listView;
-    private CounterAdapter counterAdapter;
+    private Counter counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +15,6 @@ public class MyCountersListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_counters_list);
 
         listView = findViewById(R.id.listView);
-//        counterAdapter = new CounterAdapter(this, R.layout.my_counter_list_item)
+//        counter = new Counter(this, R.layout.my_counter_list_item)
     }
 }

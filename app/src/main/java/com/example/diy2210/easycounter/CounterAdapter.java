@@ -1,21 +1,46 @@
 package com.example.diy2210.easycounter;
 
-public class CounterAdapter {
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
-    public String time;
-    public String title;
-    public String description;
-    public Integer value;
+import java.util.ArrayList;
+import java.util.List;
 
-    public CounterAdapter(String time, String title, String description, Integer  value) {
-        this.time = time;
-        this.title = title;
-        this.title = description;
-        this.value = value;
+public class CounterAdapter extends ArrayAdapter<Counter> {
+
+    private Context mContext;
+    private List<Counter> countersList = new ArrayList<>();
+
+    public CounterAdapter(Context context, ArrayList<Counter> list) {
+        super(context, 0 , list);
+        mContext = context;
+        countersList = list;
     }
 
-    public String getTime() {return time; }
-    public String getTitle() {return title; }
-    public String getDescription() {return description; }
-    public Integer getValue() {return value; }
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View listItem = convertView;
+        if(listItem == null)
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.my_counter_list_item,parent,false);
+
+        Counter currentCounter = countersList.get(position);
+
+        TextView timeTV = listItem.findViewById(R.id.timeTV);
+        timeTV.setText(currentCounter.getTime());
+
+        TextView titleTV = listItem.findViewById(R.id.titleTV);
+        titleTV.setText(currentCounter.getTitle());
+
+        TextView descriptionTV = listItem.findViewById(R.id.descriptionTV);
+        descriptionTV.setText(currentCounter.getDescription());
+
+        TextView valueTV = listItem.findViewById(R.id.valueTV);
+        valueTV.setText(currentCounter.getValue());
+
+        return listItem;
+    }
 }
