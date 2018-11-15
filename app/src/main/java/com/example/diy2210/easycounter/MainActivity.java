@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button plusBtn;
     private Button minusBtn;
     private Button button;
+    private Button saveBtn;
     private EditText titleET;
     private EditText descET;
     private EditText counterValueET;
@@ -51,18 +55,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RadioButton minusRadioBtn;
     private RadioButton twoRadioBtn;
     private RadioButton fourRadioBtn;
-    private Vibrator vibrator;
-    private MediaPlayer mp;
     private AlertDialog dialog;
     private DateFormat dateFormat;
+    private Vibrator vibrator;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if (ECApp.screenOn) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -127,6 +133,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
+
+        saveBtn = findViewById(R.id.saveBtn);
+        saveBtn.setVisibility(View.GONE);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -183,12 +198,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        if (!closeDrawer()) {
+            super.onBackPressed();
+        }
+    }
+
+    private boolean closeDrawer() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -267,43 +288,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
             dialog.show();
 
-        } else if (id == R.id.nav_create_multipul_counter) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.multipul_counter_item, null);
-
-            builder.setCancelable(true);
-            builder.setView(dialogView);
-
-            radioGroupMultiple = dialogView.findViewById(R.id.radioGroupMultiple);
-            radioGroupMultiple.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    switch (checkedId) {
-                        case R.id.twoRadioButton:
-                            multipleCounter = 1;
-                            break;
-                        case R.id.fourRadioButton:
-                            multipleCounter = 2;
-                            break;
-                    }
-                }
-            });
-
-            button = dialogView.findViewById(R.id.okBtn);
-            dialog = builder.create();
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ECApp.multipleCounter = multipleCounter;
-                    startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    dialog.cancel();
-                }
-            });
-            dialog.show();
-
+//        } else if (id == R.id.nav_create_multipul_counter) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//            LayoutInflater inflater = getLayoutInflater();
+//            View dialogView = inflater.inflate(R.layout.multipul_counter_item, null);
+//
+//            builder.setCancelable(true);
+//            builder.setView(dialogView);
+//
+//            radioGroupMultiple = dialogView.findViewById(R.id.radioGroupMultiple);
+//            radioGroupMultiple.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                    switch (checkedId) {
+//                        case R.id.twoRadioButton:
+//                            multipleCounter = 1;
+//                            break;
+//                        case R.id.fourRadioButton:
+//                            multipleCounter = 2;
+//                            break;
+//                    }
+//                }
+//            });
+//
+//            button = dialogView.findViewById(R.id.okBtn);
+//            dialog = builder.create();
+//
+//            button.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    ECApp.multipleCounter = multipleCounter;
+//                    startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
+//                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+//                    dialog.cancel();
+//                }
+//            });
+//            dialog.show();
+//
         } else if (id == R.id.nav_my_counter) {
             startActivity(new Intent(MainActivity.this, MyCountersListActivity.class));
             overridePendingTransition(R.anim.fadein, R.anim.fadeout);

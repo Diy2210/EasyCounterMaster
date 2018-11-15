@@ -19,7 +19,7 @@
 
     <!-- Settings Strings -->
     <string name="sound">Sound</string>
-    <string name="sound_info">Зlay sound when you press buttons</string>
+    <string name="sound_info">Play sound when you press buttons</string>
     <string name="vibration">Vibration</string>
     <string name="vibration_info">Use vibration when pressing buttons</string>
     <string name="delete">Delete</string>

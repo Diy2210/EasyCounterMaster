@@ -5,9 +5,9 @@ public class Counter {
     public String time;
     public String title;
     public String description;
-    public Integer value;
+    public String value;
 
-    public Counter(String time, String title, String description, Integer value) {
+    public Counter(String value) {
         this.time = time;
         this.title = title;
         this.title = description;
@@ -38,11 +38,11 @@ public class Counter {
         this.description = description;
     }
 
-    public Integer getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

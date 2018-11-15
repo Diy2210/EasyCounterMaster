@@ -19,7 +19,8 @@ import java.util.Date;
 
 public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
-    private int counter;
+    private Integer counter = 0;
+    private Integer step = 1;
     private TextView titleTV;
     private TextView descTV;
     private TextView valueTV;
@@ -28,12 +29,12 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     private Button minusBtn;
     private Button onlyPlusBtn;
     private Button onlyMinusBtn;
-    private Vibrator vibrator;
-    private MediaPlayer mp;
     private ConstraintLayout plusMinusConstraintLayout;
     private ConstraintLayout plusConstraintLayout;
     private ConstraintLayout minusConstraintLayout;
     private DateFormat dateFormat;
+    private Vibrator vibrator;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         counter = ECApp.valueInt;
+        step = ECApp.step;
 
         dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         if (ECApp.time) {
@@ -134,7 +136,7 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void counterPlus() {
-        counter++;
+        counter = counter + step;
         valueTV.setText(String.valueOf(counter));
         if (ECApp.vibration) {
             vibrator.vibrate(100);

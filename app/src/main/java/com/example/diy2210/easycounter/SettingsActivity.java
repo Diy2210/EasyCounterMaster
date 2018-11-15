@@ -28,9 +28,16 @@ public class SettingsActivity extends AppCompatActivity {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
         soundCheckBox = findViewById(R.id.soundCheckBox);
-        if (ECApp.sound) {
+        if (ECApp.sound){
             soundCheckBox.setChecked(true);
         }
+
+//        if (sharedPref.contains(String.valueOf(APP_PREFERENCES_COUNTER))) {
+//            sharedPref.getBoolean(String.valueOf(APP_PREFERENCES_COUNTER), soundCheckBox.isChecked());
+//            soundCheckBox.setChecked(true);
+//        } else {
+//            soundCheckBox.setChecked(false);
+//        }
 
         soundCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -104,7 +111,11 @@ public class SettingsActivity extends AppCompatActivity {
 //    protected void onPause() {
 //        super.onPause();
 //        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), soundCheckBox.isChecked());
+//        if (ECApp.sound) {
+//            editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), soundCheckBox.isChecked());
+//        } else {
+//            editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), false);
+//        }
 //        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), vibrationCheckBox.isChecked());
 //        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), resetCheckBox.isChecked());
 //        editor.putBoolean(String.valueOf(APP_PREFERENCES_COUNTER), timeCheckBox.isChecked());
