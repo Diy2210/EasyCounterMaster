@@ -4,6 +4,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="action_save">Save counter</string>
 
     <!-- Alert Dialog Strings -->
     <string name="ok_button">Ok</string>
@@ -43,6 +44,9 @@
     <string name="only_minus">Only -</string>
     <string name="title_new_counter">Create new counter</string>
     <string name="last_time_change">Last time change:</string>
+
+    <!-- Others -->
+    <string name="empty_list">Counters not found</string>
 
     <!-- Arrays Strings -->
     <string-array name="step">

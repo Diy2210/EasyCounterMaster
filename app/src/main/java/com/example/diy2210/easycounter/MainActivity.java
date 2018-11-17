@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -133,15 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }
-
-        saveBtn = findViewById(R.id.saveBtn);
-        saveBtn.setVisibility(View.GONE);
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
@@ -224,6 +216,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_settings) {
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            return true;
+        }
+        if (id == R.id.action_save) {
+            Integer i = Integer.parseInt(valueTV.getText().toString());
+            Counter c = new Counter(MainActivity.this);
+            c.setValue(i);
             return true;
         }
         return super.onOptionsItemSelected(item);

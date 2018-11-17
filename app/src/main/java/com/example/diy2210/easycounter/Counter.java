@@ -1,18 +1,27 @@
 package com.example.diy2210.easycounter;
 
+import android.content.Context;
+
 public class Counter {
 
     public String time;
     public String title;
     public String description;
-    public String value;
+    public Integer value;
 
-    public Counter(String value) {
+    public Counter(Context context) {
         this.time = time;
         this.title = title;
         this.title = description;
         this.value = value;
     }
+
+//    public Counter(String time, String title, String description, Integer value) {
+//        this.time = time;
+//        this.title = title;
+//        this.title = description;
+//        this.value = value;
+//    }
 
     public String getTime() {
         return time;
@@ -38,11 +47,11 @@ public class Counter {
         this.description = description;
     }
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 }

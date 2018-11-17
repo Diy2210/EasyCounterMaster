@@ -14,6 +14,7 @@ public class CounterAdapter extends ArrayAdapter<Counter> {
 
     private Context mContext;
     private List<Counter> countersList = new ArrayList<>();
+//    private ArrayList<Counter> counters;
 
     public CounterAdapter(Context context, ArrayList<Counter> list) {
         super(context, 0 , list);
