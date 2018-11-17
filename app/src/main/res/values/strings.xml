@@ -25,6 +25,7 @@
     <string name="vibration_info">Use vibration when pressing buttons</string>
     <string name="delete">Delete</string>
     <string name="reset">Reset</string>
+    <string name="reset_settings">Reset settings</string>
     <string name="reset_info">Reset counter value</string>
     <string name="time">Time</string>
     <string name="time_info">Show the last count change time</string>

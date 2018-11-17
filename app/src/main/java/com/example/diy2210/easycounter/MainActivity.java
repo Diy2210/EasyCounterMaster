@@ -218,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             return true;
         }
+
         if (id == R.id.action_save) {
             Integer i = Integer.parseInt(valueTV.getText().toString());
             Counter c = new Counter(MainActivity.this);
