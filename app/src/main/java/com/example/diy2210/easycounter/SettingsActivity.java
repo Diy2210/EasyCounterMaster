@@ -21,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox timeCheckBox;
     private CheckBox screenCheckBox;
     private CheckBox volumeButtonsCheckBox;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         soundCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPref.edit();
+                editor = sharedPref.edit();
                 editor.putBoolean("soundCheckBox_settings", soundCheckBox.isChecked()).apply();
                 ECApp.sound = isChecked;
             }
@@ -45,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
         vibrationCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPref.edit();
+                editor = sharedPref.edit();
                 editor.putBoolean("vibrationCheckBox_settings", vibrationCheckBox.isChecked()).apply();
                 ECApp.vibration = isChecked;
             }
@@ -56,7 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
         resetCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPref.edit();
+                editor = sharedPref.edit();
                 editor.putBoolean("resetCheckBox_settings", vibrationCheckBox.isChecked()).apply();
                 ECApp.reset = isChecked;
             }
@@ -67,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity {
         timeCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPref.edit();
+                editor = sharedPref.edit();
                 editor.putBoolean("timeCheckBox_settings", timeCheckBox.isChecked()).apply();
                 ECApp.time = isChecked;
             }
@@ -78,7 +79,7 @@ public class SettingsActivity extends AppCompatActivity {
         screenCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPref.edit();
+                editor = sharedPref.edit();
                 editor.putBoolean("screenCheckBox_settings", screenCheckBox.isChecked()).apply();
                 ECApp.screenOn = isChecked;
             }
@@ -89,7 +90,7 @@ public class SettingsActivity extends AppCompatActivity {
         volumeButtonsCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = sharedPref.edit();
+                editor = sharedPref.edit();
                 editor.putBoolean("volumeButtonsCheckBox_settings", volumeButtonsCheckBox.isChecked()).apply();
                 ECApp.hardwareButtons = isChecked;
             }
