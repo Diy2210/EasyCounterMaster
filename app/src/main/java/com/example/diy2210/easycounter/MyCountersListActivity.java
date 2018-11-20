@@ -1,5 +1,6 @@
 package com.example.diy2210.easycounter;
 
+import android.app.ListActivity;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 public class MyCountersListActivity extends AppCompatActivity {
 
     private ListView listView;
-    private CounterAdapter counterAdapter;
+    private CounterAdapter adapter;
     private ArrayList<Counter> counters;
-    private ArrayAdapter<String> adapter;
+    private Counter counter;
     private ConstraintLayout emptyCL;
 
     @Override
@@ -25,6 +26,9 @@ public class MyCountersListActivity extends AppCompatActivity {
         emptyCL = findViewById(R.id.emptyCL);
         listView.setEmptyView(emptyCL);
 
+        adapter = new CounterAdapter(this, counters);
+        listView.setAdapter(adapter);
+
 //        ArrayList<Counter> counterArrayList = new ArrayList<>();
 //        counterArrayList.add(new Counter(ECApp.valueInt.toString()));
 //        counterAdapter = new CounterAdapter(this, counterArrayList);
@@ -33,7 +37,7 @@ public class MyCountersListActivity extends AppCompatActivity {
 //        counterAdapter = new CounterAdapter(this, counters);
 //        listView.setAdapter(counterAdapter);
 
-        counters = new ArrayList<>();
-        adapter = new ArrayAdapter<>(MyCountersListActivity.this, R.layout.my_counter_list_item);
+//        counters = new ArrayList<>();
+//        adapter = new ArrayAdapter<>(MyCountersListActivity.this, R.layout.my_counter_list_item);
     }
 }

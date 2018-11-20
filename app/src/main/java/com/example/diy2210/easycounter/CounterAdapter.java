@@ -13,35 +13,37 @@ import java.util.List;
 public class CounterAdapter extends ArrayAdapter<Counter> {
 
     private Context mContext;
-    private List<Counter> countersList = new ArrayList<>();
-//    private ArrayList<Counter> counters;
+    private ArrayList<Counter> counters;
 
-    public CounterAdapter(Context context, ArrayList<Counter> list) {
-        super(context, 0 , list);
+    public CounterAdapter(Context context, ArrayList<Counter> counters) {
+        super(context, 0, counters);
         mContext = context;
-        countersList = list;
+        this.counters = counters;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View listItem = convertView;
-        if(listItem == null)
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.my_counter_list_item,parent,false);
+        View rowView = convertView;
+        if (rowView == null) {
 
-        Counter currentCounter = countersList.get(position);
+            rowView = LayoutInflater.from(mContext).inflate(R.layout.my_counter_list_item, parent, false);
 
-        TextView timeTV = listItem.findViewById(R.id.timeTV);
-        timeTV.setText(currentCounter.getTime());
+            Counter currentCounter = counters.get(position);
 
-        TextView titleTV = listItem.findViewById(R.id.titleTV);
-        titleTV.setText(currentCounter.getTitle());
+            TextView timeTV = rowView.findViewById(R.id.timeTV);
+            timeTV.setText(currentCounter.getTime());
 
-        TextView descriptionTV = listItem.findViewById(R.id.descriptionTV);
-        descriptionTV.setText(currentCounter.getDescription());
+            TextView titleTV = rowView.findViewById(R.id.titleTV);
+            titleTV.setText(currentCounter.getTitle());
 
-        TextView valueTV = listItem.findViewById(R.id.valueTV);
-        valueTV.setText(currentCounter.getValue());
+            TextView descriptionTV = rowView.findViewById(R.id.descriptionTV);
+            descriptionTV.setText(currentCounter.getDescription());
 
-        return listItem;
+            TextView valueTV = rowView.findViewById(R.id.valueTV);
+            valueTV.setText(currentCounter.getValue());
+
+        }
+
+        return rowView;
     }
 }
