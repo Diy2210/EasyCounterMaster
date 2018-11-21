@@ -4,12 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.text.Editable;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,11 +27,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,13 +57,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DateFormat dateFormat;
     private Vibrator vibrator;
     private MediaPlayer mp;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (ECApp.screenOn) {
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPref.getBoolean("screenCheckBox_settings", false)) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         timeTV = findViewById(R.id.timeTV);
 
         dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        if (ECApp.time) {
+        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
             Date date = new Date();
             timeTV.setText(dateFormat.format(date));
         }
@@ -110,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        if (ECApp.reset) {
+        // if (ECApp.reset)
+        if (sharedPref.getBoolean("resetCheckBox_settings", false)) {
             minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (ECApp.hardwareButtons) {
+        if (sharedPref.getBoolean("volumeButtonsCheckBox_settings", false)) {
             if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                 counterMinus();
             }
@@ -148,41 +148,58 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (ECApp.hardwareButtons) {
+        if (sharedPref.getBoolean("volumeButtonsCheckBox_settings", false)) {
             if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                 counterPlus();
             }
         }
+
         return true;
     }
 
     private void counterPlus() {
         counter++;
         valueTV.setText(String.valueOf(counter));
-        if (ECApp.vibration) {
-            vibrator.vibrate(100);
-        }
-        if (ECApp.sound) {
-            mp = MediaPlayer.create(MainActivity.this, R.raw.plus);
-            mp.start();
-        }
-        if (ECApp.time) {
-            Date date = new Date();
-            timeTV.setText(dateFormat.format(date));
-        }
+        getSharedPref();
+//        if (sharedPref.getBoolean("soundCheckBox_settings", false)) {
+//            mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
+//            mp.start();
+//        }
+//        if (sharedPref.getBoolean("vibrationCheckBox_settings", false)) {
+//            vibrator.vibrate(100);
+//        }
+//        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
+//            Date date = new Date();
+//            timeTV.setText(dateFormat.format(date));
+//        }
     }
 
     private void counterMinus() {
         counter--;
         valueTV.setText(String.valueOf(counter));
-        if (ECApp.vibration) {
-            vibrator.vibrate(100);
-        }
-        if (ECApp.sound) {
+        getSharedPref();
+//        if (sharedPref.getBoolean("soundCheckBox_settings", false)) {
+//            mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
+//            mp.start();
+//        }
+//        if (sharedPref.getBoolean("vibrationCheckBox_settings", false)) {
+//            vibrator.vibrate(100);
+//        }
+//        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
+//            Date date = new Date();
+//            timeTV.setText(dateFormat.format(date));
+//        }
+    }
+
+    private void getSharedPref() {
+        if (sharedPref.getBoolean("soundCheckBox_settings", false)) {
             mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
             mp.start();
         }
-        if (ECApp.time) {
+        if (sharedPref.getBoolean("vibrationCheckBox_settings", false)) {
+            vibrator.vibrate(100);
+        }
+        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
             Date date = new Date();
             timeTV.setText(dateFormat.format(date));
         }

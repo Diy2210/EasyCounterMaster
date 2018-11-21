@@ -3,8 +3,10 @@ package com.example.diy2210.easycounter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,18 +37,22 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     private DateFormat dateFormat;
     private Vibrator vibrator;
     private MediaPlayer mp;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_counter);
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         counter = ECApp.valueInt;
         step = ECApp.step;
 
         dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        if (ECApp.time) {
+//        if (ECApp.time)
+        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
             Date date = new Date();
             timeTV = findViewById(R.id.timeTV);
             timeTV.setText(dateFormat.format(date));
@@ -97,7 +103,8 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         onlyPlusBtn.setOnClickListener(this);
         onlyMinusBtn.setOnClickListener(this);
 
-        if (ECApp.reset) {
+//        if (ECApp.reset)
+        if (sharedPref.getBoolean("resetCheckBox_settings", false)) {
             minusBtn.setOnLongClickListener(this);
 //            onlyMinusBtn.setOnLongClickListener(this);
         }
@@ -136,32 +143,26 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void counterPlus() {
-        counter = counter + step;
+        counter++;
         valueTV.setText(String.valueOf(counter));
-        if (ECApp.vibration) {
-            vibrator.vibrate(100);
-        }
-        if (ECApp.sound) {
-            mp = MediaPlayer.create(NewCounterActivity.this, R.raw.plus);
-            mp.start();
-        }
-        if (ECApp.time) {
-            Date date = new Date();
-            timeTV.setText(dateFormat.format(date));
-        }
+        getSharedPref();
     }
 
     private void counterMinus() {
         counter--;
         valueTV.setText(String.valueOf(counter));
-        if (ECApp.vibration) {
-            vibrator.vibrate(100);
-        }
-        if (ECApp.sound) {
+        getSharedPref();
+    }
+
+    private void getSharedPref() {
+        if (sharedPref.getBoolean("soundCheckBox_settings", false)) {
             mp = MediaPlayer.create(NewCounterActivity.this, R.raw.minus);
             mp.start();
         }
-        if (ECApp.time) {
+        if (sharedPref.getBoolean("vibrationCheckBox_settings", false)) {
+            vibrator.vibrate(100);
+        }
+        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
             Date date = new Date();
             timeTV.setText(dateFormat.format(date));
         }
@@ -169,7 +170,7 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (ECApp.hardwareButtons) {
+        if (sharedPref.getBoolean("volumeButtonsCheckBox_settings", false)) {
             if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                 counterMinus();
             }
@@ -179,11 +180,12 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (ECApp.hardwareButtons) {
+        if (sharedPref.getBoolean("volumeButtonsCheckBox_settings", false)) {
             if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                 counterPlus();
             }
         }
+
         return true;
     }
 
