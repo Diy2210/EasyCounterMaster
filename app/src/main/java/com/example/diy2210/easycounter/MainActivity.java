@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        // if (ECApp.reset)
         if (sharedPref.getBoolean("resetCheckBox_settings", false)) {
             minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -161,34 +160,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         counter++;
         valueTV.setText(String.valueOf(counter));
         getSharedPref();
-//        if (sharedPref.getBoolean("soundCheckBox_settings", false)) {
-//            mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
-//            mp.start();
-//        }
-//        if (sharedPref.getBoolean("vibrationCheckBox_settings", false)) {
-//            vibrator.vibrate(100);
-//        }
-//        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
-//            Date date = new Date();
-//            timeTV.setText(dateFormat.format(date));
-//        }
     }
 
     private void counterMinus() {
         counter--;
         valueTV.setText(String.valueOf(counter));
         getSharedPref();
-//        if (sharedPref.getBoolean("soundCheckBox_settings", false)) {
-//            mp = MediaPlayer.create(MainActivity.this, R.raw.minus);
-//            mp.start();
-//        }
-//        if (sharedPref.getBoolean("vibrationCheckBox_settings", false)) {
-//            vibrator.vibrate(100);
-//        }
-//        if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
-//            Date date = new Date();
-//            timeTV.setText(dateFormat.format(date));
-//        }
     }
 
     private void getSharedPref() {
