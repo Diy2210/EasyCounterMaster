@@ -14,7 +14,6 @@ public class MyCountersListActivity extends AppCompatActivity {
     private ListView listView;
     private CounterAdapter adapter;
     private ArrayList<Counter> counters;
-    private Counter counter;
     private ConstraintLayout emptyCL;
 
     @Override
@@ -37,7 +36,5 @@ public class MyCountersListActivity extends AppCompatActivity {
 //        counterAdapter = new CounterAdapter(this, counters);
 //        listView.setAdapter(counterAdapter);
 
-//        counters = new ArrayList<>();
-//        adapter = new ArrayAdapter<>(MyCountersListActivity.this, R.layout.my_counter_list_item);
     }
 }

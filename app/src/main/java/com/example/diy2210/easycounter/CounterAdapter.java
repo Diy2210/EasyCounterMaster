@@ -16,6 +16,7 @@ public class CounterAdapter extends ArrayAdapter<Counter> {
     private ArrayList<Counter> counters;
 
     public CounterAdapter(Context context, ArrayList<Counter> counters) {
+//        super(context, R.layout.my_counter_list_item, counters);
         super(context, 0, counters);
         mContext = context;
         this.counters = counters;
@@ -27,7 +28,6 @@ public class CounterAdapter extends ArrayAdapter<Counter> {
         if (rowView == null) {
 
             rowView = LayoutInflater.from(mContext).inflate(R.layout.my_counter_list_item, parent, false);
-
             Counter currentCounter = counters.get(position);
 
             TextView timeTV = rowView.findViewById(R.id.timeTV);
