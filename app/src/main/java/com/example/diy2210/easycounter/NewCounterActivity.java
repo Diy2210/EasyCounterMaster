@@ -51,7 +51,6 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         step = ECApp.step;
 
         dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//        if (ECApp.time)
         if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
             Date date = new Date();
             timeTV = findViewById(R.id.timeTV);
@@ -103,7 +102,6 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         onlyPlusBtn.setOnClickListener(this);
         onlyMinusBtn.setOnClickListener(this);
 
-//        if (ECApp.reset)
         if (sharedPref.getBoolean("resetCheckBox_settings", false)) {
             minusBtn.setOnLongClickListener(this);
 //            onlyMinusBtn.setOnLongClickListener(this);
