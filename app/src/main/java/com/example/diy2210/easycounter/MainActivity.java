@@ -27,12 +27,15 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private SQLHelper sqlHelper;
     private int counter = 0;
     private int counterType = 1;
     private int multipleCounter = 1;
@@ -214,11 +217,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == R.id.action_save) {
-            Integer i = Integer.parseInt(valueTV.getText().toString());
-            Counter c = new Counter(MainActivity.this);
-            c.setValue(i);
+//            Integer i = Integer.parseInt(valueTV.getText().toString());
+//            Counter c = new Counter(MainActivity.this);
+//            c.setValue(i);
+
+            final String time = "time";
+            final String title = "title";
+            final String description = "description";
+            final String value = valueTV.getText().toString();
+            sqlHelper = new SQLHelper(MainActivity.this);
+            sqlHelper.insertCounterDetails(time, title, description, value);
+            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

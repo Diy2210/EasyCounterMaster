@@ -45,7 +45,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     // **** CRUD (Create, Read, Update, Delete) Operations ***** //
 
     // Adding new User Details
-    void insertUserDetails(String time, String title, String description, String value) {
+    void insertCounterDetails(String time, String title, String description, String value) {
         //Get the Data Repository in write mode
         sqLiteDatabase = this.getWritableDatabase();
         //Create a new map of values, where column names are the keys

@@ -1,19 +1,20 @@
 package com.example.diy2210.easycounter;
 
-import android.app.ListActivity;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyCountersListActivity extends AppCompatActivity {
 
+    private SQLHelper sqlHelper;
     private ListView listView;
-    private CounterAdapter adapter;
-    private ArrayList<Counter> counters;
+    private ListAdapter adapter;
     private ConstraintLayout emptyCL;
 
     @Override
@@ -25,16 +26,12 @@ public class MyCountersListActivity extends AppCompatActivity {
         emptyCL = findViewById(R.id.emptyCL);
         listView.setEmptyView(emptyCL);
 
-        adapter = new CounterAdapter(this, counters);
+        sqlHelper = new SQLHelper(this);
+        ArrayList<HashMap<String, String>> counterList = sqlHelper.GetCounters();
+        adapter = new SimpleAdapter(MyCountersListActivity.this, counterList, R.layout.my_counter_list_item,
+                new String[]{"name", "age", "city"},
+                new int[]{R.id.time, R.id.title, R.id.description, R.id.value});
         listView.setAdapter(adapter);
-
-//        ArrayList<Counter> counterArrayList = new ArrayList<>();
-//        counterArrayList.add(new Counter(ECApp.valueInt.toString()));
-//        counterAdapter = new CounterAdapter(this, counterArrayList);
-//        listView.setAdapter(counterAdapter);
-
-//        counterAdapter = new CounterAdapter(this, counters);
-//        listView.setAdapter(counterAdapter);
 
     }
 }
