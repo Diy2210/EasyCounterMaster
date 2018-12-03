@@ -21,12 +21,12 @@ public class SQLHelper extends SQLiteOpenHelper {
     private static final String KEY_VALUE = "value";
     private SQLiteDatabase sqLiteDatabase;
 
-    public SQLHelper(Context context){
+    public SQLHelper(Context context) {
         super(context,DB_NAME, null, DB_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase){
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_COUNTERS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_TIME + " TEXT,"
                 + KEY_TITLE + " TEXT,"
@@ -34,8 +34,9 @@ public class SQLHelper extends SQLiteOpenHelper {
                 + KEY_VALUE + " TEXT"+ ")";
         sqLiteDatabase.execSQL(CREATE_TABLE);
     }
+
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion){
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         // Drop older table if exist
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_COUNTERS);
         // Create tables again
@@ -60,7 +61,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     // Get User Details
-    public ArrayList<HashMap<String, String>> GetCounters(){
+    public ArrayList<HashMap<String, String>> GetCounters() {
         sqLiteDatabase = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> counterList = new ArrayList<>();
         String query = "SELECT time, title, description, value FROM "+ TABLE_COUNTERS;
@@ -77,7 +78,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     // Get User Details based on userid
-    public ArrayList<HashMap<String, String>> GetUserByUserId(int userid){
+    public ArrayList<HashMap<String, String>> GetUserByUserId(int userid) {
         sqLiteDatabase = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> counterList = new ArrayList<>();
         String query = "SELECT name, age, city FROM "+ TABLE_COUNTERS;
@@ -93,14 +94,14 @@ public class SQLHelper extends SQLiteOpenHelper {
     }
 
     // Delete User Details
-    public void DEleteCounter(int counterId){
+    public void DEleteCounter(int counterId) {
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.delete(TABLE_COUNTERS, KEY_ID+" = ?",new String[]{String.valueOf(counterId)});
         sqLiteDatabase.close();
     }
 
     // Update User Details
-    public int UpdateCounterDetails(String time, String tittle, String description, String value, int id){
+    public int UpdateCounterDetails(String time, String tittle, String description, String value, int id) {
         sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_TIME, time);
@@ -108,6 +109,6 @@ public class SQLHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_DESCRIPTION, description);
         contentValues.put(KEY_VALUE, value);
         int count = sqLiteDatabase.update(TABLE_COUNTERS, contentValues, KEY_ID+" = ?",new String[]{String.valueOf(id)});
-        return  count;
+        return count;
     }
 }
