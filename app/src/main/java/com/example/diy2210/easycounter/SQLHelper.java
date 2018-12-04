@@ -45,7 +45,7 @@ public class SQLHelper extends SQLiteOpenHelper {
 
     // **** CRUD (Create, Read, Update, Delete) Operations ***** //
 
-    // Adding new User Details
+    // Adding new Counter Details
     void insertCounterDetails(String time, String title, String description, String value) {
         //Get the Data Repository in write mode
         sqLiteDatabase = this.getWritableDatabase();
@@ -60,7 +60,7 @@ public class SQLHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    // Get User Details
+    // Get Counter Details
     public ArrayList<HashMap<String, String>> GetCounters() {
         sqLiteDatabase = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> counterList = new ArrayList<>();
@@ -77,35 +77,36 @@ public class SQLHelper extends SQLiteOpenHelper {
         return  counterList;
     }
 
-    // Get User Details based on userid
-    public ArrayList<HashMap<String, String>> GetUserByUserId(int userid) {
+    // Get Counter Details based on counterID
+    public ArrayList<HashMap<String, String>> GetCounterByCounterId(int counterID) {
         sqLiteDatabase = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> counterList = new ArrayList<>();
-        String query = "SELECT name, age, city FROM "+ TABLE_COUNTERS;
-        Cursor cursor = sqLiteDatabase.query(TABLE_COUNTERS, new String[]{KEY_TIME, KEY_TITLE, KEY_VALUE}, KEY_ID+ "=?",new String[]{String.valueOf(userid)},null, null, null, null);
+        String query = "SELECT time, title, description, value FROM "+ TABLE_COUNTERS;
+        Cursor cursor = sqLiteDatabase.query(TABLE_COUNTERS, new String[]{KEY_TIME, KEY_TITLE, KEY_DESCRIPTION, KEY_VALUE}, KEY_ID+ "=?",new String[]{String.valueOf(counterID)},null, null, null, null);
         if (cursor.moveToNext()){
             HashMap<String,String> counter = new HashMap<>();
-            counter.put("name",cursor.getString(cursor.getColumnIndex(KEY_TIME)));
-            counter.put("age",cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
-            counter.put("city",cursor.getString(cursor.getColumnIndex(KEY_VALUE)));
+            counter.put("time",cursor.getString(cursor.getColumnIndex(KEY_TIME)));
+            counter.put("title",cursor.getString(cursor.getColumnIndex(KEY_TITLE)));
+            counter.put("description",cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
+            counter.put("value",cursor.getString(cursor.getColumnIndex(KEY_VALUE)));
             counterList.add(counter);
         }
         return  counterList;
     }
 
-    // Delete User Details
-    public void DEleteCounter(int counterId) {
+    // Delete Counter Details
+    public void DeleteCounter(int counterId) {
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.delete(TABLE_COUNTERS, KEY_ID+" = ?",new String[]{String.valueOf(counterId)});
         sqLiteDatabase.close();
     }
 
-    // Update User Details
-    public int UpdateCounterDetails(String time, String tittle, String description, String value, int id) {
+    // Update Counter Details
+    public int UpdateCounterDetails(String time, String title, String description, String value, int id) {
         sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_TIME, time);
-        contentValues.put(KEY_TITLE, tittle);
+        contentValues.put(KEY_TITLE, title);
         contentValues.put(KEY_DESCRIPTION, description);
         contentValues.put(KEY_VALUE, value);
         int count = sqLiteDatabase.update(TABLE_COUNTERS, contentValues, KEY_ID+" = ?",new String[]{String.valueOf(id)});

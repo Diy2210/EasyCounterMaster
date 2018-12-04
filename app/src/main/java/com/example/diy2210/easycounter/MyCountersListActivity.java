@@ -29,7 +29,7 @@ public class MyCountersListActivity extends AppCompatActivity {
         sqlHelper = new SQLHelper(this);
         ArrayList<HashMap<String, String>> counterList = sqlHelper.GetCounters();
         adapter = new SimpleAdapter(MyCountersListActivity.this, counterList, R.layout.my_counter_list_item,
-                new String[]{"name", "age", "city"},
+                new String[]{"time", "title", "description", "value"},
                 new int[]{R.id.time, R.id.title, R.id.description, R.id.value});
         listView.setAdapter(adapter);
 

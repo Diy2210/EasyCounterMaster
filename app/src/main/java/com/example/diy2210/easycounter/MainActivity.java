@@ -217,18 +217,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == R.id.action_save) {
-//            Integer i = Integer.parseInt(valueTV.getText().toString());
-//            Counter c = new Counter(MainActivity.this);
-//            c.setValue(i);
-
-            final String time = "time";
+//            final String time = "time"+"\n";
+            final Date date = new Date();
+            final String time = dateFormat.format(date)+"\n";
             final String title = "title";
             final String description = "description";
             final String value = valueTV.getText().toString();
             sqlHelper = new SQLHelper(MainActivity.this);
             sqlHelper.insertCounterDetails(time, title, description, value);
             Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-
             return true;
         }
 
