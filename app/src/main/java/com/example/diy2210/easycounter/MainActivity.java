@@ -36,6 +36,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private SQLHelper sqlHelper;
+    private Toolbar toolbar;
     private int counter = 0;
     private int counterType = 1;
     private int multipleCounter = 1;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -217,12 +218,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (id == R.id.action_save) {
-//            final String time = "time"+"\n";
-            final Date date = new Date();
-            final String time = dateFormat.format(date)+"\n";
-            final String title = "title";
-            final String description = "description";
-            final String value = valueTV.getText().toString();
+            Date date = new Date();
+            String time = dateFormat.format(date)+"\n";
+            String title = "title";
+            String description = "description";
+            String value = valueTV.getText().toString();
             sqlHelper = new SQLHelper(MainActivity.this);
             sqlHelper.insertCounterDetails(time, title, description, value);
             Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();

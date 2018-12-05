@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import java.util.Date;
 
 public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
 
+    private SQLHelper sqlHelper;
     private Integer counter = 0;
     private Integer step = 1;
     private TextView titleTV;
@@ -45,6 +47,9 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_new_counter);
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         counter = ECApp.valueInt;
