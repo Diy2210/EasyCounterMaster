@@ -7,15 +7,17 @@
     tools:context=".NewCounterActivity">
 
     <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="?colorPrimary"-->
-        <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
+        <!--android:id="@+id/my_toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?actionBarSize"-->
+        <!--app:title="Toolbar"-->
+        <!--app:titleTextAppearance="@style/ToolbarTextAppearance.Title"-->
+        <!--app:subtitleTextAppearance="@style/ToolbarTextAppearance.Subtitle"-->
+        <!--style="@style/MyToolbar"/>-->
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"

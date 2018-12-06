@@ -11,6 +11,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+public class NewCounterActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener, Toolbar.OnMenuItemClickListener {
 
     private SQLHelper sqlHelper;
     private Integer counter = 0;
@@ -47,9 +48,6 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_new_counter);
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         counter = ECApp.valueInt;
@@ -210,5 +208,14 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
                             }
                         }
                 ).show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                return true;
+        }
+        return true;
     }
 }

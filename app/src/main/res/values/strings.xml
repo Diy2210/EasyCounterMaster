@@ -10,6 +10,7 @@
     <string name="ok_button">Ok</string>
     <string name="cancel_button">Cancel</string>
     <string name="message_reset_value">You want to reset the value?</string>
+    <string name="message_delete_item_counter">Delete this counter?</string>
 
     <!-- Drawer Strings -->
     <string name="create_counter">Create new counter</string>
