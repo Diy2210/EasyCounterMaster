@@ -139,18 +139,19 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
 //                    AlertRecreate();
 //                    break;
             }
-
         return false;
     }
 
     private void counterPlus() {
         counter++;
+//        int i = counter+step;
         valueTV.setText(String.valueOf(counter));
         getSharedPref();
     }
 
     private void counterMinus() {
         counter--;
+//        int i = counter-step;
         valueTV.setText(String.valueOf(counter));
         getSharedPref();
     }
@@ -186,7 +187,6 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
                 counterPlus();
             }
         }
-
         return true;
     }
 

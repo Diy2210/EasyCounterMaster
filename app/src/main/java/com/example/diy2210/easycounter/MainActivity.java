@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         valueTV = findViewById(R.id.valueTV);
         timeTV = findViewById(R.id.timeTV);
+        plusBtn = findViewById(R.id.plusRadioBtn);
+        minusBtn = findViewById(R.id.minusRadioBtn);
 
         dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         if (sharedPref.getBoolean("timeCheckBox_settings", false)) {
@@ -97,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         valueTV.setText(String.valueOf(counter));
 
-        plusBtn = findViewById(R.id.plusRadioBtn);
-        minusBtn = findViewById(R.id.minusRadioBtn);
         plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,22 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             minusBtn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setCancelable(false);
-                    builder.setMessage(R.string.message_reset_value);
-                    builder.setPositiveButton(R.string.ok_button,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    recreate();
-                                }
-                            })
-                            .setNegativeButton(R.string.cancel_button,
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            dialog.dismiss();
-                                        }
-                                    }
-                            ).show();
+                    AlertRecreate();
                     return false;
                 }
             });
@@ -227,6 +212,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             sqlHelper.insertCounterDetails(time, title, description, value);
             Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
             return true;
+
+        } if (id == R.id.action_reset) {
+            AlertRecreate();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -240,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             LayoutInflater inflater = getLayoutInflater();
             View dialogView = inflater.inflate(R.layout.new_counter_item, null);
-
             builder.setCancelable(true);
             builder.setView(dialogView);
 
@@ -339,6 +327,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void AlertRecreate() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setCancelable(false);
+        builder.setMessage(R.string.message_reset_counter);
+        builder.setPositiveButton(R.string.ok_button,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        recreate();
+                    }
+                })
+                .setNegativeButton(R.string.cancel_button,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }
+                ).show();
     }
 }
 

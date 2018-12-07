@@ -5,11 +5,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Save counter</string>
+    <string name="action_reset">Reset counter</string>
 
     <!-- Alert Dialog Strings -->
     <string name="ok_button">Ok</string>
     <string name="cancel_button">Cancel</string>
     <string name="message_reset_value">You want to reset the value?</string>
+    <string name="message_reset_counter">You want to reset the counter?</string>
     <string name="message_delete_item_counter">Delete this counter?</string>
 
     <!-- Drawer Strings -->
