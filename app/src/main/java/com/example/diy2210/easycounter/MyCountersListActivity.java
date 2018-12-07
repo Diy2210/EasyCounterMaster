@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,25 +40,37 @@ public class MyCountersListActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MyCountersListActivity.this);
-                builder.setCancelable(false);
-                builder.setMessage(R.string.message_delete_item_counter);
-                builder.setPositiveButton(R.string.ok_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                sqlHelper.DeleteCounter(position);
-                                recreate();
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel_button,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        dialog.dismiss();
-                                    }
-                                }
-                        ).show();
+            public void onItemClick(AdapterView<?> parent, View view, final int pos, long id) {
+                Toast.makeText(MyCountersListActivity.this, "Position " + pos, Toast.LENGTH_LONG).show();
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDelete(position);
+                return true;
+            }
+        });
+    }
+
+    private void AlertDelete(final Integer position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MyCountersListActivity.this);
+        builder.setCancelable(false);
+        builder.setMessage(R.string.message_delete_item_counter);
+        builder.setPositiveButton(R.string.ok_button,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        sqlHelper.DeleteCounter(position);
+                        recreate();
+                    }
+                })
+                .setNegativeButton(R.string.cancel_button,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }
+                ).show();
     }
 }
