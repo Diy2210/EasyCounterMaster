@@ -54,7 +54,7 @@ public class MyCountersListActivity extends AppCompatActivity {
         });
     }
 
-    private void AlertDelete(final Integer position) {
+    private void AlertDelete(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(MyCountersListActivity.this);
         builder.setCancelable(false);
         builder.setMessage(R.string.message_delete_item_counter);

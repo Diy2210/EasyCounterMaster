@@ -265,12 +265,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     ECApp.step = Integer.parseInt(stepET.getText().toString());
                     ECApp.counterType = counterType;
 
-                    // Test empty fields
-                    String s = titleET.getText().toString();
-                    if (TextUtils.isEmpty(s)) {
-                        counterValueET.setError("Empty title");
-                        counterValueET.requestFocus();
-                    }
+//                    // Test empty fields
+//                    String s = titleET.getText().toString();
+//                    if (TextUtils.isEmpty(s)) {
+//                        counterValueET.setError("Empty title");
+//                        counterValueET.requestFocus();
+//                    }
 
                     startActivity(new Intent(MainActivity.this, NewCounterActivity.class));
                     overridePendingTransition(R.anim.fadein, R.anim.fadeout);

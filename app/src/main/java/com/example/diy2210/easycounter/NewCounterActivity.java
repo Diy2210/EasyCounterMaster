@@ -26,6 +26,7 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
     private SQLHelper sqlHelper;
     private Integer counter = 0;
     private Integer step = 1;
+    private Integer i = 1;
     private TextView titleTV;
     private TextView descTV;
     private TextView valueTV;
@@ -144,14 +145,14 @@ public class NewCounterActivity extends AppCompatActivity implements View.OnClic
 
     private void counterPlus() {
         counter++;
-//        int i = counter+step;
+//        i = counter + step;
+//        ECApp.value = ECApp.valueInt + ECApp.step;
         valueTV.setText(String.valueOf(counter));
         getSharedPref();
     }
 
     private void counterMinus() {
         counter--;
-//        int i = counter-step;
         valueTV.setText(String.valueOf(counter));
         getSharedPref();
     }
